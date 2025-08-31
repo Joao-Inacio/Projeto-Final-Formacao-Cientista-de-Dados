@@ -1,10 +1,11 @@
+-- Active: 1756674705566@@127.0.0.1@5432@credito
 SELECT * FROM "HISTORICO_CREDITO";
 
 
 -- Renomeando a tabela HISTORICO_CREDITO para historico_credito
 ALTER TABLE "HISTORICO_CREDITO" RENAME TO historico_credito;
 
--- 
+--
 SELECT * FROM historico_credito;
 
 -- Renomeando a coluna IDHISTCRED para idhistcred
@@ -29,9 +30,9 @@ ALTER SEQUENCE historico_credito_id_seq OWNED BY historico_credito.idhistcred;
 ALTER TABLE historico_credito ALTER idhistcred SET NOT NULL;
 
 -- Criando uma chave primaria para a tabela historico_credito
-ALTER TABLE 
-    historico_credito 
-ADD CONSTRAINT 
+ALTER TABLE
+    historico_credito
+ADD CONSTRAINT
     pk_histcred_idhistcred
-PRIMARY KEY 
+PRIMARY KEY
     (idhistcred);
