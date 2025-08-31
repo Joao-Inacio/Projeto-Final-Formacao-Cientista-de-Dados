@@ -1,5 +1,5 @@
--- Active: 1752011843369@@127.0.0.1@5432@credito
-CREATE SEQUENCE public.idcliente
+
+CREATE SEQUENCE IF NOT EXISTS public.idcliente
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -7,7 +7,7 @@ CREATE SEQUENCE public.idcliente
     NO MAXVALUE
     CACHE 1;
 
-CREATE TABLE public."CLIENTES" (
+CREATE TABLE IF NOT EXISTS public."CLIENTES" (
     idcliente integer DEFAULT nextval('public.idcliente'::regclass) NOT NULL,
     cliente character varying(50),
     estado character varying(2),
