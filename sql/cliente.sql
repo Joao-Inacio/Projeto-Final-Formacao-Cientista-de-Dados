@@ -1,4 +1,4 @@
--- Active: 1724072756004@@127.0.0.1@5432@credito
+-- Active: 1756674705566@@127.0.0.1@5432@credito
 
 -- Visualizando a tabela "CLIENTES"
 SELECT * FROM "CLIENTES";
@@ -10,14 +10,14 @@ ALTER TABLE "CLIENTES" RENAME TO clientes;
 SELECT * FROM clientes;
 
 -- Verificando valores duplicados
-SELECT 
+SELECT
     idcliente,
     COUNT(*)
 FROM
     clientes
 GROUP BY
     idcliente
-HAVING 
+HAVING
     COUNT(*) > 1;
 
 -- Verificando valores nulos
@@ -39,7 +39,7 @@ ALTER SEQUENCE clientes_id_seq OWNED BY clientes.idcliente;
 ALTER TABLE clientes ALTER idcliente SET NOT NULL;
 
 -- Adicionando a Chave Primária
-ALTER TABLE 
+ALTER TABLE
     clientes
 ADD CONSTRAINT
     pk_clt_idcliente
