@@ -12,7 +12,7 @@ SELECT * FROM outrosfinanciamentos;
 
 
 -- Renomeando a coluna IDOUTROSFINANC para idoutrasfinancas
-ALTER TABLE outrosfinanciamentos RENAME COLUMN idoutrasfinancas TO idoutrosfinanc;
+ALTER TABLE outrosfinanciamentos RENAME COLUMN "IDOUTROSFINANC" TO idoutrosfinanc;
 
 -- Renomeando a coluna "OUTROSFINANCIAMENTOS" para outrosfinanciamentos
 ALTER TABLE outrosfinanciamentos RENAME COLUMN "OUTROSFINANCIAMENTOS" TO outrosfinanciamentos;
@@ -37,5 +37,5 @@ ALTER TABLE
     outrosfinanciamentos
 ADD CONSTRAINT
     pk_outrosfinanciamentos_idoutrosfinanc
-PRIMARY KEY 
+PRIMARY KEY
     (idoutrosfinanc);
