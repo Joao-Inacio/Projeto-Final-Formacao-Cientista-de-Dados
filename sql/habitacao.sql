@@ -1,4 +1,4 @@
--- Active: 1730294463944@@127.0.0.1@5432@credito
+-- Active: 1756674705566@@127.0.0.1@5432@credito
 SELECT * FROM "HABITACAO";
 
 -- Alterando o nome
@@ -13,10 +13,10 @@ ALTER TABLE habitacao RENAME COLUMN "IDHABITACAO" TO idhabitacao;
 -- Alternado o nome da coluna de tipo
 ALTER TABLE habitacao RENAME COLUMN "HABITACAO" TO tipohabitacao;
 
--- vendo o proximo valor de id para criar a chave primaria 
+-- vendo o proximo valor de id para criar a chave primaria
 SELECT MAX(idhabitacao) + 1 FROM habitacao;
 
--- Criando a sequencia 
+-- Criando a sequencia
 CREATE SEQUENCE habitacao_id_seq MINVALUE 4;
 
 -- Alterando o valor
@@ -28,7 +28,7 @@ ALTER SEQUENCE habitacao_id_seq OWNED BY habitacao.idhabitacao;
 -- Alterando a configuração da coluna
 ALTER TABLE habitacao ALTER idhabitacao SET NOT NULL;
 
--- Criando a chave primaria 
+-- Criando a chave primaria
 ALTER TABLE
     habitacao
 ADD CONSTRAINT
