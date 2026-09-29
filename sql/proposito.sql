@@ -1,3 +1,4 @@
+-- Active: 1780585782525@@127.0.0.1@5432@db-credito
 SELECT * FROM "PROPOSITO";
 
 -- Alterando o nome da tabela "PROPOSITO" para propósitos
@@ -28,8 +29,8 @@ ALTER SEQUENCE propositos_idproposito_seq OWNED BY propositos.idproposito;
 ALTER TABLE propositos ALTER COLUMN idproposito SET NOT NULL;
 
 -- Criando uma chave primária para a tabela propositos
-ALTER TABLE 
-    propositos 
+ALTER TABLE
+    propositos
 ADD CONSTRAINT
     pk_propositos_idproposito
 PRIMARY KEY

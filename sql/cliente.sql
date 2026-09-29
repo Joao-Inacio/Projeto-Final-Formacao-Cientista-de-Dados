@@ -1,4 +1,4 @@
--- Active: 1756674705566@@127.0.0.1@5432@credito
+-- Active: 1780585782525@@127.0.0.1@5432@db-credito
 
 -- Visualizando a tabela "CLIENTES"
 SELECT * FROM "CLIENTES";

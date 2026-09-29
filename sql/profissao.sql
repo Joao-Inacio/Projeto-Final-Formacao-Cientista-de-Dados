@@ -1,3 +1,4 @@
+-- Active: 1780585782525@@127.0.0.1@5432@db-credito
 SELECT * FROM "PROFISSAO";
 
 -- Alteração do nome da tabela de "PROFISSAO" para profissoes
@@ -21,7 +22,7 @@ CREATE SEQUENCE profissoes_idprofissao_seq MINVALUE 5;
 -- Alterando o proximo valor da sequencia
 ALTER TABLE profissoes ALTER COLUMN idprofissao SET DEFAULT NEXTVAL('profissoes_idprofissao_seq');
 
--- Alterando a Sequencia 
+-- Alterando a Sequencia
 ALTER SEQUENCE profissoes_idprofissao_seq OWNED BY profissoes.idprofissao;
 
 -- Setando o valor para NOT NULL
@@ -32,7 +33,7 @@ ALTER TABLE
     profissoes
 ADD CONSTRAINT
     pk_profissoes_idprofissao
-PRIMARY KEY 
+PRIMARY KEY
     (idprofissao);
 
 

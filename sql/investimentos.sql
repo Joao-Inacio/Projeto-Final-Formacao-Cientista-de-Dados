@@ -1,3 +1,4 @@
+-- Active: 1780585782525@@127.0.0.1@5432@db-credito
 SELECT * FROM "INVESTIMENTOS";
 
 -- Renomeando a tabela
@@ -29,8 +30,8 @@ ALTER TABLE investimentos ALTER COLUMN idinvestimentos SET NOT NULL;
 
 -- Criando a chave primaria
 ALTER TABLE
-    investimentos 
-ADD CONSTRAINT 
+    investimentos
+ADD CONSTRAINT
     pk_investimentos_idinvestimentos
-PRIMARY KEY 
+PRIMARY KEY
     (idinvestimentos);
