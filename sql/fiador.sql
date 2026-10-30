@@ -1,3 +1,4 @@
+-- Active: 1792517032271@@127.0.0.1@5432@db_creditos
 ALTER TABLE "FIADOR" RENAME TO fiador;
 
 SELECT * FROM fiador;

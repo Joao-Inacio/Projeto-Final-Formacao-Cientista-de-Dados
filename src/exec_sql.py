@@ -4,40 +4,56 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
+# Carrega as variáveis do arquivo .env
 load_dotenv()
 
-db_host = os.getenv("DB_HOST")
+db_url = os.getenv("DB_HOST")
 
-# Dica: É boa prática explicitar o driver (+psycopg2)
-engine = create_engine(db_host)
+if not db_url:
+    raise ValueError("A variável DB_HOST não foi encontrada no arquivo .env!")
 
-arquivos = sorted(glob.glob("sql/*.sql"))
+# Pasta onde ficam seus arquivos .sql
+diretorio_sql = "sql"
 
-# --- A MUDANÇA ESTÁ AQUI ---
-# Em vez de engine.connect(), usamos engine.raw_connection()
-# Isso pega a conexão "pura" do driver, sem a burocracia do SQLAlchemy
+if not os.path.exists(diretorio_sql):
+    print(f"A pasta '{diretorio_sql}' não existe. Crie a pasta e coloque seus arquivos .sql nela.")
+    exit()
+
+arquivos = sorted(glob.glob(os.path.join(diretorio_sql, "*.sql")))
+
+if not arquivos:
+    print(f"Nenhum arquivo .sql foi encontrado dentro da pasta '{diretorio_sql}/'.")
+    exit()
+
+# Cria o engine e obtém a conexão 'pura' do psycopg2
+engine = create_engine(db_url)
 raw_conn = engine.raw_connection()
+cursor = None
 
 try:
     cursor = raw_conn.cursor()
 
     for arquivo in arquivos:
-        print(f"Lendo: {arquivo}...")
+        nome_arquivo = os.path.basename(arquivo)
+        print(f"Executando: {nome_arquivo}...")
+
         with open(arquivo, "r", encoding="utf-8") as f:
             script_sql = f.read()
-
-            # O cursor puro do psycopg2 tem o método execute() que aceita
-            # scripts gigantes com múltiplos comandos e caracteres especiais
             cursor.execute(script_sql)
-            print(f"✅ {os.path.basename(arquivo)} executado com sucesso!")
 
-    # Commitamos tudo de uma vez no final (ou dentro do loop, se preferir)
+        print(f"{nome_arquivo} executado com sucesso!")
+
+    # Confirma as alterações no banco de dados se tudo rodou sem erros
     raw_conn.commit()
+    print("\n Todos os scripts SQL foram executados e salvos com sucesso no PostgreSQL!")
 
 except Exception as e:
-    raw_conn.rollback()  # Desfaz se der erro
-    print(f"❌ Erro crítico: {e}")
+    # Se qualquer script falhar, desfaz todas as alterações realizadas nesta execução
+    raw_conn.rollback()
+    print(f"\nErro durante a execução dos scripts. Rollback executado!")
+    print(f"Detalhes do erro: {e}")
 
 finally:
-    cursor.close()
+    if cursor:
+        cursor.close()
     raw_conn.close()

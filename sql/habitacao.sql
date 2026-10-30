@@ -1,4 +1,4 @@
--- Active: 1780585782525@@127.0.0.1@5432@db-credito
+-- Active: 1792517032271@@127.0.0.1@5432@db_creditos
 SELECT * FROM "HABITACAO";
 
 -- Alterando o nome
